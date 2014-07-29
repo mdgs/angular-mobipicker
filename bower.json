@@ -1,0 +1,31 @@
+{
+  "name": "angular-mobipicker",
+  "version": "0.0.1",
+  "description": "Wrapper directive for mobiscroll datetime picker",
+  "main": "src/mobipicker.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "mobiscroll",
+    "datepicker",
+    "timepicker",
+    "mobilepicker"
+  ],
+  "authors": [
+    "I Made Agus Setiawan"
+  ],
+  "license": "MIT",
+  "homepage": "hari.pitt.edu",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mobiscroll": "https://github.com/acidb/mobiscroll.git#2.12"
+  }
+}
