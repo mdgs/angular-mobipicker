@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>"Angular MobiPicker"</title>
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.ios.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.ios7.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.android.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.android-holo.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.wp.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.widget.sense-ui.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.ios.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.ios7.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.android.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.android-holo.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.wp.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.scroller.sense-ui.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.animation.css" />
+    <link rel="stylesheet" href="../bower_components/mobiscroll/css/mobiscroll.icons.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.core.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.scroller.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.datetime.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.select.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.list.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.ios.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.ios7.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.android.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.android-holo.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.wp.js"></script>
+    <script src="../bower_components/mobiscroll/js/mobiscroll.widget.sense-ui.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <!-- endbower -->
+
+    <script src="../src/mobipicker.js"></script>
+
+    <script type="text/javascript">
+      angular.module('myApp', ['hari.ui'])
+      .controller('MainCtrl', ['$scope', function($scope){
+         $scope.myDate = new Date(2011, 11, 12);
+         $scope.myCity = 2;
+         $scope.myYear = new Date(2012,11, 12);
+      }]);
+    </script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    Selected Date: {{myDate}} <br>
+    <input mobi-picker="myDate" mobi-picker-options="{ theme: 'ios7', dateFormat: 'M d, yyyy' }"/><br/><br/>
+    Selected Year: {{myYear}} <br>
+    <input mobi-picker="myYear" mobi-picker-options="{ theme: 'ios7', dateFormat: 'yy', dateOrder: 'yy' }"/><br/><br/>
+    
+    Selected City: {{myCity}}<br/>
+    <select data-role="none" id="city" mobi-picker="myCity" mobi-picker-options="{ preset: 'select', theme: 'android' }">
+        <option value="1">Atlanta</option>
+        <option value="2">Berlin</option>
+        <option value="3">Boston</option>
+        <option value="4">Chicago</option>
+        <option value="5">London</option>
+        <option value="6">Los Angeles</option>
+        <option value="7">New York</option>
+        <option value="8">Paris</option>
+        <option value="9">San Francisco</option>
+    </select>
+    <br/>
+
+  </body>
+</html>
