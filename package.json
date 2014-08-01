@@ -2,12 +2,15 @@
   "name": "mobipicker",
   "title": "Angular Directive for mobiscroll picker",
   "version": "0.0.0",
+  "author": "I Made Agus Setiawan",
+  "license": "MIT License",
   "engines": {
     "node": ">= 0.10.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-bower-install": "^1.6.0",
+    "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-jshint": "~0.10.0",

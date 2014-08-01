@@ -14,16 +14,26 @@ module.exports = function(grunt) {
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
+      ' Licensed <%= _.pluck(pkg.license, "type").join(", ") %> */\n',
     // Task configuration.
+    clean: {
+      dist: {
+        files: [{
+          dot: true,
+          src: [
+            'dist'
+          ]
+        }]
+      }
+    },
     concat: {
       options: {
         banner: '<%= banner %>',
         stripBanners: true
       },
       dist: {
-        src: ['src/<%= pkg.name %>.js'],
+        src: ['src/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -90,8 +100,7 @@ module.exports = function(grunt) {
 
     bowerInstall: {
       app: {
-        src: 'demo/index.html',
-        // ignorePath: 'demo/'
+        src: 'demo/index.html'
       }
     },
 
@@ -113,9 +122,9 @@ module.exports = function(grunt) {
   });
 
   // Default task.
+  grunt.registerTask('build', ['clean:dist', 'jshint', 'concat', 'uglify']);
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
-  grunt.registerTask('serve', function(target) {
-
+  grunt.registerTask('serve', function() {
     grunt.task.run([
       'bowerInstall',
       'connect:livereload',

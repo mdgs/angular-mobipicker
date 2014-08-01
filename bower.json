@@ -2,7 +2,7 @@
   "name": "angular-mobipicker",
   "version": "0.0.1",
   "description": "Wrapper directive for mobiscroll datetime picker",
-  "main": "src/mobipicker.js",
+  "main": "dist/mobipicker.js",
   "moduleType": [
     "globals"
   ],
@@ -26,6 +26,41 @@
     "tests"
   ],
   "dependencies": {
-    "mobiscroll": "https://github.com/acidb/mobiscroll.git#2.12"
+    "mobiscroll": "https://github.com/acidb/mobiscroll.git#2.12",
+    "angular": "~1.2.21"
+  },
+  "overrides": {
+    "mobiscroll": {
+      "main": [
+        "js/mobiscroll.core.js",
+        "js/mobiscroll.widget.js",
+        "js/mobiscroll.scroller.js",
+        "js/mobiscroll.datetime.js",
+        "js/mobiscroll.select.js",
+        "js/mobiscroll.list.js",
+        "js/mobiscroll.widget.ios.js",
+        "js/mobiscroll.widget.ios7.js",
+        "js/mobiscroll.widget.android.js",
+        "js/mobiscroll.widget.android-holo.js",
+        "js/mobiscroll.widget.wp.js",
+        "js/mobiscroll.widget.sense-ui.js",
+        "css/mobiscroll.widget.css",
+        "css/mobiscroll.widget.ios.css",
+        "css/mobiscroll.widget.ios7.css",
+        "css/mobiscroll.widget.android.css",
+        "css/mobiscroll.widget.android-holo.css",
+        "css/mobiscroll.widget.wp.css",
+        "css/mobiscroll.widget.sense-ui.css",
+        "css/mobiscroll.scroller.css",
+        "css/mobiscroll.scroller.ios.css",
+        "css/mobiscroll.scroller.ios7.css",
+        "css/mobiscroll.scroller.android.css",
+        "css/mobiscroll.scroller.android-holo.css",
+        "css/mobiscroll.scroller.wp.css",
+        "css/mobiscroll.scroller.sense-ui.css",
+        "css/mobiscroll.animation.css",
+        "css/mobiscroll.icons.css"
+      ]
+    }
   }
 }
