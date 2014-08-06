@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         newcap: true,
         noarg: true,
         sub: true,
-        unused: true,
+        // unused: true,
         boss: true,
         eqnull: true
       },

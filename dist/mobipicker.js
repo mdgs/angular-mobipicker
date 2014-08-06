@@ -1,9 +1,10 @@
-/*! Angular Directive for mobiscroll picker - v0.0.0 - 2014-07-31
-* Copyright (c) 2014 I Made Agus Setiawan; Licensed  */
+/*! Angular Directive for mobiscroll picker - v0.0.0 - 2014-08-06
+* Copyright (c) 2014 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
 angular.module('hari.ui', [])
 
-.directive('mobiPicker', ['$parse',
-  function($parse) {
+.directive('mobiPicker', ['$parse', '$timeout',
+
+  function($parse, $timeout) {
 
     var directive = {
       restrict: 'A',
@@ -20,17 +21,43 @@ angular.module('hari.ui', [])
           animate: 'none',
 
           onSelect: function(valueText, inst) {
-            scope.$apply(function() {
-              var getter = $parse(attrs['mobiPicker']);
-              var setter = getter.assign;
+            // console.log('select');
+            // scope.$apply(function() {
+            //   var getter = $parse(attrs['mobiPicker']);
+            //   var setter = getter.assign;
 
-              if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
-                setter(scope, angular.copy(elm.mobiscroll('getDate')));
-              } else if (['select'].indexOf(inst.settings.preset) >= 0) {
-                setter(scope, angular.copy(elm.mobiscroll('getValue')));
+            //   if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+            //     setter(scope, angular.copy(elm.mobiscroll('getDate')));
+            //   } else if (['select'].indexOf(inst.settings.preset) >= 0) {
+            //     setter(scope, angular.copy(elm.mobiscroll('getValue')));
+            //   }
+            // });
+          },
+
+          onClose: function(valueText, btn, inst) {
+            var getter = $parse(attrs['mobiPicker']);
+            var setter = getter.assign;
+
+            $timeout(function() {
+              switch (btn) {
+                case 'set':
+                  scope.$apply(function() {
+                    if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+                      setter(scope, angular.copy(elm.mobiscroll('getDate')));
+                    } else if (['select'].indexOf(inst.settings.preset) >= 0) {
+                      setter(scope, angular.copy(elm.mobiscroll('getValue')));
+                    }
+                  });
+                  break;
+                case 'clear':
+                  scope.$apply(function() {
+                    setter(scope, null);
+                  });
+                  break;
               }
-            });
+            }, 0, false);
           }
+
         };
 
         // prepare initialization object for scroller
@@ -58,12 +85,13 @@ angular.module('hari.ui', [])
             // action for change
             function(newValue) {
               var inst = $element.mobiscroll('getInst');
-
-              if ((newValue instanceof Date) && ['date', 'time'].indexOf(inst.settings.preset) >= 0) {
-                $element.mobiscroll('setDate', newValue, true);
-              } else if (['select'].indexOf(inst.settings.preset) >= 0) {
-                $element.mobiscroll('setValue', [newValue], true);
-              }
+              $timeout(function() {
+                if ((newValue instanceof Date) && ['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+                  $element.mobiscroll('setDate', newValue, true);
+                } else if (['select'].indexOf(inst.settings.preset) >= 0) {
+                  $element.mobiscroll('setValue', [newValue], true);
+                }
+              }, 0, false);
             },
             true
           );
