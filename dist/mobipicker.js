@@ -1,10 +1,13 @@
-/*! Angular Directive for mobiscroll picker - v0.0.0 - 2014-08-06
+/*! Angular Directive for mobiscroll picker - v0.0.0 - 2014-09-23
 * Copyright (c) 2014 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
 angular.module('hari.ui', [])
 
 .directive('mobiPicker', ['$parse', '$timeout',
 
   function($parse, $timeout) {
+
+    // regexp for time
+    var reg = new RegExp(/(1[012]|[1-9]):[0-5][0-9](\s)?(am|pm)/i);
 
     var directive = {
       restrict: 'A',
@@ -19,6 +22,7 @@ angular.module('hari.ui', [])
           mode: 'scroller',
           display: 'modal',
           animate: 'none',
+          customTime: false,
 
           onSelect: function(valueText, inst) {
             // console.log('select');
@@ -42,11 +46,28 @@ angular.module('hari.ui', [])
               switch (btn) {
                 case 'set':
                   scope.$apply(function() {
-                    if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+
+                    // special request time as string 12 hours format
+                    if (inst.settings.customTime && ['time'].indexOf(inst.settings.preset) >= 0) {
+                      var comp = elm.mobiscroll('getValue');
+                      var time = ('0' + comp[0]).substr(-2) + ':';
+                      time += ('0' + comp[1]).substr(-2) + ' ';
+                      time += '' + comp[2] === '0' ? 'AM' : 'PM';
+
+                      setter(scope, time);
+                    }
+
+                    // 
+                    else if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
                       setter(scope, angular.copy(elm.mobiscroll('getDate')));
-                    } else if (['select'].indexOf(inst.settings.preset) >= 0) {
+                    }
+
+                    // 
+                    else if (['select'].indexOf(inst.settings.preset) >= 0) {
                       setter(scope, angular.copy(elm.mobiscroll('getValue')));
                     }
+
+
                   });
                   break;
                 case 'clear':
@@ -85,12 +106,22 @@ angular.module('hari.ui', [])
             // action for change
             function(newValue) {
               var inst = $element.mobiscroll('getInst');
+
               $timeout(function() {
                 if ((newValue instanceof Date) && ['date', 'time'].indexOf(inst.settings.preset) >= 0) {
                   $element.mobiscroll('setDate', newValue, true);
-                } else if (['select'].indexOf(inst.settings.preset) >= 0) {
+                }
+
+                // // special request for time as string 12 hours format
+                else if (inst.settings.customTime && ['time'].indexOf(inst.settings.preset) >= 0 && reg.test(newValue)) {
+                  $element.mobiscroll('setValue', newValue, true);
+                }
+
+                // 
+                else if (['select'].indexOf(inst.settings.preset) >= 0) {
                   $element.mobiscroll('setValue', [newValue], true);
                 }
+
               }, 0, false);
             },
             true
