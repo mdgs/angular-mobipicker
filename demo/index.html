@@ -51,7 +51,7 @@
          $scope.myDate2 = new Date();
 
          $scope.myTime = new Date();
-         $scope.myCustomTime = "10:21 AM";
+         $scope.myCustomTime = "23:21";
       }]);
     </script>
   </head>
@@ -65,7 +65,7 @@
  $scope.myDate2 = new Date();
 
  $scope.myTime = new Date();
- $scope.myCustomTime = "10:21 AM";
+ $scope.myCustomTime = "23:21";
         </code>
     </pre>
     Selected Date: {{myDate}} <br>
@@ -80,9 +80,13 @@
     <input mobi-picker="myTime" mobi-picker-options="{ preset: 'time', buttons: ['set', 'cancel'] }"/><br/><br/>
 
 
+    Selected time with time step=5 : {{myTime}} <br>
+    <input mobi-picker="myTime" mobi-picker-options="{ preset: 'time', stepMinute: 5, timeFormat: 'HH:ii', timeWheels: 'HHii', buttons: ['set', 'cancel'] }"/><br/><br/>
+
+
     Selected custom time as string: {{myCustomTime}} <br>
     <code>mobi-picker-options = {customTime: true}</code> <br>
-    <input mobi-picker="myCustomTime" mobi-picker-options="{ preset: 'time', buttons: ['set', 'cancel'], customTime: true }"/><br/><br/>
+    <input mobi-picker="myCustomTime" mobi-picker-options="{ preset: 'time', stepMinute: 5, timeFormat: 'HH:ii', timeWheels: 'HHii', buttons: ['set', 'cancel'], customTime: true }"/><br/><br/>
     
     Selected City: {{myCity}}<br/>
     <select data-role="none" id="city" mobi-picker="myCity" mobi-picker-options="{ preset: 'select', theme: 'android' }">

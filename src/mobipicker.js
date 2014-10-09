@@ -2,7 +2,7 @@
  * @Author: ims13
  * @Date:   2014-07-29 11:14:56
  * @Last Modified by:   ims13
- * @Last Modified time: 2014-09-23 12:15:33
+ * @Last Modified time: 2014-10-09 15:06:37
  */
 angular.module('hari.ui', [])
 
@@ -11,7 +11,8 @@ angular.module('hari.ui', [])
   function($parse, $timeout) {
 
     // regexp for time
-    var reg = new RegExp(/(1[012]|[1-9]):[0-5][0-9](\s)?(am|pm)/i);
+    var reg12 = new RegExp(/^(1[012]|[1-9]):[0-5][0-9](\s)?(am|pm)$/i);
+    var reg24 = new RegExp(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/i);
 
     var directive = {
       restrict: 'A',
@@ -51,13 +52,17 @@ angular.module('hari.ui', [])
                 case 'set':
                   scope.$apply(function() {
 
-                    // special request time as string 12 hours format
+                    // special request time as string 12 hours format & 24 format
                     if (inst.settings.customTime && ['time'].indexOf(inst.settings.preset) >= 0) {
                       var comp = elm.mobiscroll('getValue');
                       var time = ('0' + comp[0]).substr(-2) + ':';
-                      time += ('0' + comp[1]).substr(-2) + ' ';
-                      time += '' + comp[2] === '0' ? 'AM' : 'PM';
+                      time += ('0' + comp[1]).substr(-2);
 
+                      // if time with am/pm, the comp element consist of 3 items
+                      if (comp.length > 2) { //--> am/pm
+                        time += '' + comp[2] === '0' ? ' AM' : ' PM';
+                      }
+                      console.log(comp);
                       setter(scope, time);
                     }
 
@@ -116,8 +121,9 @@ angular.module('hari.ui', [])
                   $element.mobiscroll('setDate', newValue, true);
                 }
 
-                // // special request for time as string 12 hours format
-                else if (inst.settings.customTime && ['time'].indexOf(inst.settings.preset) >= 0 && reg.test(newValue)) {
+                // // special request for time as string 12 hours format & 24 hours
+                else if (inst.settings.customTime && ['time'].indexOf(inst.settings.preset) >= 0 &&
+                  (reg12.test(newValue) || reg24.test(newValue))) {
                   $element.mobiscroll('setValue', newValue, true);
                 }
 
