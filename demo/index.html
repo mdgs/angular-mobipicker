@@ -52,6 +52,7 @@
 
          $scope.myTime = new Date();
          $scope.myCustomTime = "23:21";
+         $scope.myDateTime = new Date();
       }]);
     </script>
   </head>
@@ -66,8 +67,13 @@
 
  $scope.myTime = new Date();
  $scope.myCustomTime = "23:21";
+ $scope.myDateTime = new Date(); 
         </code>
     </pre>
+
+    Selected DateTime: {{myDateTime}} <br>
+    <input mobi-picker="myDateTime" mobi-picker-options="{ preset: 'datetime', theme: 'ios7'}"/><br/><br/>
+
     Selected Date: {{myDate}} <br>
     <input mobi-picker="myDate" mobi-picker-options="{ theme: 'ios7', dateFormat: 'M d, yyyy' }"/><br/><br/>
     Selected Year: {{myYear}} <br>

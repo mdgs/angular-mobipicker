@@ -1,13 +1,12 @@
 /* 
  * @Author: ims13
  * @Date:   2014-07-29 11:14:56
- * @Last Modified by:   ims13
- * @Last Modified time: 2014-10-09 15:06:37
+ * @Last Modified by:   madeagus
+ * @Last Modified time: 2015-02-20 08:47:21
  */
 angular.module('hari.ui', [])
 
 .directive('mobiPicker', ['$parse', '$timeout',
-
   function($parse, $timeout) {
 
     // regexp for time
@@ -67,7 +66,7 @@ angular.module('hari.ui', [])
                     }
 
                     // 
-                    else if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+                    else if (['date', 'time', 'datetime'].indexOf(inst.settings.preset) >= 0) {
                       setter(scope, angular.copy(elm.mobiscroll('getDate')));
                     }
 
@@ -117,7 +116,7 @@ angular.module('hari.ui', [])
               var inst = $element.mobiscroll('getInst');
 
               $timeout(function() {
-                if ((newValue instanceof Date) && ['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+                if ((newValue instanceof Date) && ['date', 'time', 'datetime'].indexOf(inst.settings.preset) >= 0) {
                   $element.mobiscroll('setDate', newValue, true);
                 }
 
