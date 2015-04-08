@@ -1,9 +1,8 @@
-/*! Angular Directive for mobiscroll picker - v0.0.0 - 2014-10-09
-* Copyright (c) 2014 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
+/*! Angular Directive for mobiscroll picker - v0.0.0 - 2015-04-08
+* Copyright (c) 2015 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
 angular.module('hari.ui', [])
 
 .directive('mobiPicker', ['$parse', '$timeout',
-
   function($parse, $timeout) {
 
     // regexp for time
@@ -63,7 +62,7 @@ angular.module('hari.ui', [])
                     }
 
                     // 
-                    else if (['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+                    else if (['date', 'time', 'datetime'].indexOf(inst.settings.preset) >= 0) {
                       setter(scope, angular.copy(elm.mobiscroll('getDate')));
                     }
 
@@ -89,6 +88,8 @@ angular.module('hari.ui', [])
         // prepare initialization object for scroller
         var initOptS = attrs['mobiPickerOptions'] || '{}';
         var initOpt = scope.$eval(initOptS);
+        
+        initOpt.defaultValue = $parse(attrs['defaultValue'])(scope);
 
         angular.extend(options, initOpt);
 
@@ -113,7 +114,7 @@ angular.module('hari.ui', [])
               var inst = $element.mobiscroll('getInst');
 
               $timeout(function() {
-                if ((newValue instanceof Date) && ['date', 'time'].indexOf(inst.settings.preset) >= 0) {
+                if ((newValue instanceof Date) && ['date', 'time', 'datetime'].indexOf(inst.settings.preset) >= 0) {
                   $element.mobiscroll('setDate', newValue, true);
                 }
 

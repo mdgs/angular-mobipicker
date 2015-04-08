@@ -53,6 +53,12 @@
          $scope.myTime = new Date();
          $scope.myCustomTime = "23:21";
          $scope.myDateTime = new Date();
+
+         $scope.obj = {
+            defaultDate: new Date('2015-01-01 10:10'),
+            emptyDate: null
+         }
+
       }]);
     </script>
   </head>
@@ -68,6 +74,10 @@
  $scope.myTime = new Date();
  $scope.myCustomTime = "23:21";
  $scope.myDateTime = new Date(); 
+ $scope.obj = {
+   defaultDate: new Date('2015-01-01 10:10'),
+   emptyDate: null
+ }
         </code>
     </pre>
 
@@ -94,6 +104,10 @@
     <code>mobi-picker-options = {customTime: true}</code> <br>
     <input mobi-picker="myCustomTime" mobi-picker-options="{ preset: 'time', stepMinute: 5, timeFormat: 'HH:ii', timeWheels: 'HHii', buttons: ['set', 'cancel'], customTime: true }"/><br/><br/>
     
+    Empty date: {{emptyDate}} <br>
+    <code>defaultValue: 2015-01-01 10:10</code> <br>
+    <input mobi-picker="obj.emptyDate" default-value="obj.defaultDate" mobi-picker-options="{ preset: 'datetime', stepMinute: 5, timeFormat: 'HH:ii', timeWheels: 'HHii', buttons: ['set', 'cancel'] }"/><br/><br/>
+
     Selected City: {{myCity}}<br/>
     <select data-role="none" id="city" mobi-picker="myCity" mobi-picker-options="{ preset: 'select', theme: 'android' }">
         <option value="1">Atlanta</option>

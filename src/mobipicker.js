@@ -1,8 +1,8 @@
 /* 
  * @Author: ims13
  * @Date:   2014-07-29 11:14:56
- * @Last Modified by:   madeagus
- * @Last Modified time: 2015-02-20 08:47:21
+ * @Last Modified by:   ims13
+ * @Last Modified time: 2015-04-08 13:57:46
  */
 angular.module('hari.ui', [])
 
@@ -92,6 +92,8 @@ angular.module('hari.ui', [])
         // prepare initialization object for scroller
         var initOptS = attrs['mobiPickerOptions'] || '{}';
         var initOpt = scope.$eval(initOptS);
+        
+        initOpt.defaultValue = $parse(attrs['defaultValue'])(scope);
 
         angular.extend(options, initOpt);
 
