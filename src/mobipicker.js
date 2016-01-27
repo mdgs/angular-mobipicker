@@ -137,7 +137,7 @@ angular.module('hari.ui', [])
                                         $element.mobiscroll('setValue', [newValue], true);
                                     }
 
-                                }, 0, false);
+                                }, 300, false);
                             },
                             true
                         );
