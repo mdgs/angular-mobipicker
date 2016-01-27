@@ -1,5 +1,5 @@
-/*! Angular Directive for mobiscroll picker - v0.0.0 - 2015-04-08
-* Copyright (c) 2015 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
+/*! Angular Directive for mobiscroll picker - v0.0.0 - 2016-01-27
+* Copyright (c) 2016 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
 angular.module('hari.ui', [])
 
 .directive('mobiPicker', ['$parse', '$timeout',
@@ -93,10 +93,17 @@ angular.module('hari.ui', [])
 
         angular.extend(options, initOpt);
 
-        // init scroller
-        // elm.mobiscroll()[options.preset](options);
-        elm.scroller(options);
-
+        /**
+         * init scroller
+         * Specifically for SELECT element, the scroller initialization need to be delayed
+         * waiting for the DOM finished rendered. When the <option> element generated from
+         * remote list using ng-repeat, then mobiscroll wont be able to catch the list, since
+         * the list is not rendered yet. hence give delay about 300ms will let <option> being
+         * rendered. line 178 mobiscroll.select.js $('option', elm).each(function () {
+         */
+        $timeout(function() {
+          elm.scroller(options);
+        }, 300);
       },
 
       // update picker component, scope -> component
