@@ -120,9 +120,10 @@ angular.module('hari.ui', [])
                             },
                             // action for change
                             function(newValue) {
-                                var inst = $element.mobiscroll('getInst');
 
                                 $timeout(function() {
+                                    var inst = $element.mobiscroll('getInst');
+
                                     if ((newValue instanceof Date) && ['date', 'time', 'datetime'].indexOf(inst.settings.preset) >= 0) {
                                         $element.mobiscroll('setDate', newValue, true);
                                     }
