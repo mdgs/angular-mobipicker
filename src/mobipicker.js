@@ -15,6 +15,8 @@ angular.module('hari.ui', [])
                 // update scope variable, component -> scope
                 link: function(scope, elm, attrs) {
 
+                    elm = $(elm);
+
                     // default option
                     var options = {
                         preset: 'date',

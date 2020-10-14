@@ -1,5 +1,5 @@
-/*! Angular Directive for mobiscroll picker - v0.0.0 - 2016-01-27
-* Copyright (c) 2016 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
+/*! Angular Directive for mobiscroll picker - v0.0.2 - 2020-10-14
+* Copyright (c) 2020 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
 /*! Angular Directive for mobiscroll picker - v0.0.0 - 2016-01-27
  * Copyright (c) 2016 I Made Agus Setiawan; Licensed , , , , , , , , , ,  */
 angular.module('hari.ui', [])
@@ -16,6 +16,8 @@ angular.module('hari.ui', [])
 
                 // update scope variable, component -> scope
                 link: function(scope, elm, attrs) {
+
+                    elm = $(elm);
 
                     // default option
                     var options = {

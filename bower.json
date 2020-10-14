@@ -1,6 +1,6 @@
 {
   "name": "angular-mobipicker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Wrapper directive for mobiscroll datetime picker",
   "main": "dist/mobipicker.js",
   "moduleType": [
